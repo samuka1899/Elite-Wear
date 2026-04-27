@@ -251,7 +251,7 @@
     
     <div class="login-bg-glow"></div>
     
-    <a href="index.html" class="back-home">
+    <a href="/" class="back-home">
         <i class="fas fa-arrow-left"></i>
         Voltar para a Loja
     </a>
@@ -293,7 +293,7 @@
         </div>
 
         <div class="register-link">
-            Não tem uma conta? <a href="register.html">Cadastre-se</a>
+            Não tem uma conta? <a href="register">Cadastre-se</a>
         </div>
     </div>
 
@@ -388,7 +388,7 @@
                 // Store current session
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 alert(`Bem-vindo de volta, ${user.name}!`);
-                window.location.href = 'index.html';
+                window.location.href = '/';
             } else {
                 alert('E-mail ou senha incorretos!');
             }
