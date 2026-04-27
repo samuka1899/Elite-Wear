@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | ELITEWEAR</title>
+    <meta name="description" content="Descubra uma nova forma de se vestir com estilo, conforto e autenticidade. Nossa coleção reúne camisetas, conjuntos, roupas e calçados cuidadosamente selecionados para oferecer qualidade, durabilidade e um visual moderno que acompanha as tendências atuais sem abrir mão da sua identidade.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(20, 20, 20, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #050505;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .login-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            z-index: 1;
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header img {
+            width: 116px;
+            margin-bottom: 1rem;
+        }
+
+        .login-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(white, rgba(255,255,255,0.5));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-grey);
+            transition: 0.3s;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            left: auto !important;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-grey);
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-orange);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-family: inherit;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-orange);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-group input:focus + i {
+            color: var(--primary-orange);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-orange);
+            border: none;
+            border-radius: 10px;
+            color: var(--bg-black);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 1rem 0;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-grey);
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .back-home:hover {
+            color: var(--primary-orange);
+            transform: translateX(-5px);
+        }
+
+        canvas#bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        Voltar para a Loja
+    </a>
+
+    <div class="login-container">
+        <div class="login-header">
+            <img src="assets/logo.png" alt="EliteWear Logo">
+            <h2>Criar Conta</h2>
+        </div>
+
+        <form id="registerForm">
+            <div class="input-group">
+                <input type="text" id="regName" placeholder="Nome Completo" required>
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="input-group">
+                <input type="email" id="regEmail" placeholder="E-mail" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="regPass" placeholder="Senha" required>
+                <i class="fas fa-lock"></i>
+                <i class="fas fa-eye toggle-password" id="toggleRegPass"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="regConfirmPass" placeholder="Confirmar Senha" required>
+                <i class="fas fa-shield-alt"></i>
+                <i class="fas fa-eye toggle-password" id="toggleConfirmPass"></i>
+            </div>
+
+            <button type="submit" class="login-btn">Cadastrar</button>
+        </form>
+
+        <div id="verifySection" style="display: none; animation: slideUp 0.5s ease-out;">
+            <div class="login-header" style="margin-bottom: 1.5rem;">
+                <div style="background: var(--primary-orange); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                    <i class="fas fa-envelope-open-text" style="font-size: 1.5rem; color: var(--bg-black);"></i>
+                </div>
+                <h2 style="font-size: 1.5rem;">Verificar E-mail</h2>
+                <p style="color: var(--text-grey); font-size: 0.85rem; margin-top: 1rem; text-align: center; line-height: 1.4;">Enviamos um código de 6 dígitos para o seu e-mail. Por favor, insira-o abaixo para ativar sua conta.</p>
+            </div>
+            <form id="verifyForm">
+                <div class="input-group">
+                    <input type="text" id="verifyCode" placeholder="000000" maxlength="6" required style="text-align: center; letter-spacing: 5px; font-size: 1.5rem; padding: 15px; background: rgba(255,255,255,0.03); border: 1px dashed var(--primary-orange);">
+                </div>
+                <p id="timerText" style="text-align: center; font-size: 0.85rem; color: var(--primary-orange); margin-bottom: 1.5rem; font-weight: 600;">O código expira em: <span id="timer">02:00</span></p>
+                <button type="submit" class="login-btn">Ativar Conta</button>
+                <p style="text-align: center; font-size: 0.8rem; color: var(--text-grey); margin-top: 1rem;">Não recebeu o código? <a href="#" id="resendBtn" style="color: var(--primary-orange); pointer-events: none; opacity: 0.5;">Reenviar</a></p>
+            </form>
+        </div>
+
+        <div class="register-link">
+            Já tem uma conta? <a href="login.html">Entre agora</a>
+        </div>
+    </div>
+
+    <script>
+        // Custom Cursor System
+        const cursor = document.querySelector('.cursor');
+        const dot = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            createTrail(mouseX, mouseY);
+        });
+
+        function animateCursor() {
+            posX += (mouseX - posX) * 0.15;
+            posY += (mouseY - posY) * 0.15;
+            cursor.style.left = posX + 'px';
+            cursor.style.top = posY + 'px';
+            dot.style.left = mouseX + 'px';
+            dot.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.classList.add('trail');
+            document.body.appendChild(trail);
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            setTimeout(() => trail.remove(), 400);
+        }
+
+        // Holographic Background
+        const canvas = document.getElementById('bg');
+        const ctx = canvas.getContext('2d');
+        let w, h, time = 0;
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            for (let y = 0; y < h; y += 20) {
+                ctx.beginPath();
+                for (let x = 0; x < w; x += 10) {
+                    let wave = Math.sin(x * 0.01 + time) * 20 + Math.cos(y * 0.02 + time) * 10;
+                    ctx.lineTo(x, y + wave);
+                }
+                ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+            time += 0.02;
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Magnetic effect for the back button
+        const backBtn = document.querySelector('.back-home');
+        backBtn.addEventListener('mousemove', (e) => {
+            const rect = backBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            backBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        backBtn.addEventListener('mouseleave', () => {
+            backBtn.style.transform = `translate(0px, 0px)`;
+        });
+
+        // Registration Logic
+        const registerForm = document.getElementById('registerForm');
+        const verifySection = document.getElementById('verifySection');
+        const verifyForm = document.getElementById('verifyForm');
+        const resendBtn = document.getElementById('resendBtn');
+        const timerSpan = document.getElementById('timer');
+        let tempUser = null;
+        let currentVerificationCode = "";
+        let countdownInterval = null;
+
+        function startTimer() {
+            let timeLeft = 120; // 2 minutes
+            resendBtn.style.pointerEvents = 'none';
+            resendBtn.style.opacity = '0.5';
+            
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    timerSpan.textContent = "Expirado";
+                    currentVerificationCode = "EXPIRED";
+                    resendBtn.style.pointerEvents = 'auto';
+                    resendBtn.style.opacity = '1';
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function generateAndSendCode(email) {
+            const randomNum = Math.floor(Math.random() * (999999 - 20 + 1)) + 20;
+            currentVerificationCode = randomNum.toString().padStart(6, '0');
+            alert(`[SIMULAÇÃO GMAIL]\n\nPara: ${email}\nAssunto: Confirmação de Conta - ELITEWEAR\n\nSeu código de ativação é: ${currentVerificationCode}`);
+            startTimer();
+        }
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPass').value;
+            const confirmPass = document.getElementById('regConfirmPass').value;
+
+            if (password !== confirmPass) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            if (users.find(u => u.email === email)) {
+                alert('Este e-mail já está cadastrado!');
+                return;
+            }
+
+            tempUser = { name, email, password, verified: false };
+            
+            generateAndSendCode(email);
+            
+            registerForm.style.display = 'none';
+            document.querySelector('.login-header').style.display = 'none';
+            document.querySelector('.register-link').style.display = 'none';
+            verifySection.style.display = 'block';
+        });
+
+        resendBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (tempUser) {
+                generateAndSendCode(tempUser.email);
+            }
+        });
+
+        verifyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const code = document.getElementById('verifyCode').value;
+
+            if (currentVerificationCode === "EXPIRED") {
+                alert('O código expirou! Clique em Reenviar.');
+                return;
+            }
+
+            if (code === currentVerificationCode) {
+                tempUser.verified = true;
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                users.push(tempUser);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                alert('E-mail verificado com sucesso! Sua conta está ativa.');
+                window.location.href = 'login.html';
+            } else {
+                alert('Código de verificação inválido!');
+            }
+        });
+
+        // Toggle Password Visibility
+        const setupToggle = (toggleId, inputId) => {
+            const toggle = document.getElementById(toggleId);
+            const input = document.getElementById(inputId);
+            toggle.addEventListener('click', () => {
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                toggle.classList.toggle('fa-eye');
+                toggle.classList.toggle('fa-eye-slash');
+            });
+        };
+
+        setupToggle('toggleRegPass', 'regPass');
+        setupToggle('toggleConfirmPass', 'regConfirmPass');
+    </script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITEWEAR | Streetwear Premium</title>
+    <meta name="description" content="Descubra uma nova forma de se vestir com estilo, conforto e autenticidade. Nossa coleção reúne camisetas, conjuntos, roupas e calçados cuidadosamente selecionados para oferecer qualidade, durabilidade e um visual moderno que acompanha as tendências atuais sem abrir mão da sua identidade.">
+    <link rel="canonical" href="https://www.elitewear.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    <nav>
+        <div class="logo"><a href="index.html"><img src="assets/logo.png" alt="EliteWear Logo"></a></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="novidades.html">Novidades</a></li>
+            <li><a href="promocoes.html">Promoções</a></li>
+            <li><a href="conjuntos.html">Conjuntos</a></li>
+        </ul>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <a href="register.html" class="register-mobile-link">Cadastre-se</a>
+            <a href="login.html" class="nav-icon-link"><i class="fas fa-user"></i></a>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>DOMINE AS RUAS COM ESTILO</h1>
+            <p>Descubra uma nova forma de se vestir com estilo, conforto e autenticidade. Nossa coleção reúne camisetas, conjuntos, roupas e calçados cuidadosamente selecionados para oferecer qualidade, durabilidade e um visual moderno que acompanha as tendências atuais sem abrir mão da sua identidade.</p>
+            <div class="hero-btns">
+                <a href="categorias.html" class="btn-primary magnetic">Ver Coleção</a>
+                <a href="register.html" class="btn-secondary magnetic">Cadastre-se</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="destaques">
+        <!-- Nova Seção de Introdução -->
+        <div class="section-title">
+            <p style="color: var(--primary-orange); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Exclusividade</p>
+            <h2 style="font-size: 2rem; max-width: 800px; margin: 0 auto;">Eleve seu guarda-roupa com peças exclusivas e estilosas na EliteWear.</h2>
+            <div class="underline" style="margin-top: 20px;"></div>
+        </div>
+
+        <div class="section-title">
+            <h2>Categorias</h2>
+            <div class="underline"></div>
+        </div>
+
+        <section class="products-grid">
+            <!-- Conjuntos (Navigation links to this section as Conjuntos) -->
+            <article class="product-card" data-category="conjuntos destaque">
+                <img src="assets/pants.png" alt="Conjunto Cargo Dark Grey" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Calças</span>
+                    <h3 class="product-name">Cargo Dark Grey</h3>
+                    <p class="product-price">R$ 249,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <!-- Camisas -->
+            <article class="product-card" data-category="camisas destaque">
+                <img src="assets/shirt.png" alt="Camiseta Abstract Orange" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Camisas</span>
+                    <h3 class="product-name">Abstract Orange Tee</h3>
+                    <p class="product-price">R$ 129,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <!-- Casacos -->
+            <article class="product-card" data-category="casacos destaque">
+                <img src="assets/coat.png" alt="Jaqueta Winter Shield" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Casacos</span>
+                    <h3 class="product-name">Winter Shield Jacket</h3>
+                    <p class="product-price">R$ 489,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <!-- Moletons -->
+            <article class="product-card" data-category="moletons destaque">
+                <img src="assets/hoodie.png" alt="Moletom Neon Vibe" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Moletons</span>
+                    <h3 class="product-name">Moletom Neon Vibe</h3>
+                    <p class="product-price">R$ 319,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <!-- Tênis -->
+            <article class="product-card" data-category="tenis destaque">
+                <img src="assets/hero.png" alt="Street Sneaker OG" class="product-image" style="object-position: bottom;">
+                <div class="product-info">
+                    <span class="product-category">Tênis</span>
+                    <h3 class="product-name">Street Sneaker OG</h3>
+                    <p class="product-price">R$ 599,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <!-- Camisas 2 -->
+            <article class="product-card" data-category="camisas">
+                <img src="assets/shirt.png" alt="Camiseta Basic Grey" class="product-image" style="filter: grayscale(1);">
+                <div class="product-info">
+                    <span class="product-category">Camisas</span>
+                    <h3 class="product-name">Basic Grey Edition</h3>
+                    <p class="product-price">R$ 99,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+        </section>
+
+        <!-- Seção Exclusiva de Casacos -->
+        <div class="section-title" id="casacos-section">
+            <h2>Novidades</h2>
+            <div class="underline"></div>
+        </div>
+
+        <section class="products-grid">
+            <article class="product-card" data-category="casacos">
+                <img src="assets/coat.png" alt="Jaqueta Winter Shield" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Casacos</span>
+                    <h3 class="product-name">Winter Shield Jacket</h3>
+                    <p class="product-price">R$ 489,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-category="casacos">
+                <img src="assets/hoodie.png" alt="Moletom Neon Vibe" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Moletons</span>
+                    <h3 class="product-name">Moletom Neon Vibe</h3>
+                    <p class="product-price">R$ 319,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-category="casacos">
+                <img src="assets/coat.png" alt="Casaco Executivo Grey" class="product-image" style="filter: brightness(0.8);">
+                <div class="product-info">
+                    <span class="product-category">Casacos</span>
+                    <h3 class="product-name">Casaco Executivo Grey</h3>
+                    <p class="product-price">R$ 529,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+        </section>
+
+        <!-- Seção Exclusiva de Camisetas -->
+        <div class="section-title" id="camisetas-section">
+            <h2>Camisetas</h2>
+            <div class="underline"></div>
+        </div>
+
+        <section class="products-grid">
+            <article class="product-card" data-category="camisas">
+                <img src="assets/shirt.png" alt="Camiseta Abstract Orange" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Camisetas</span>
+                    <h3 class="product-name">Abstract Orange Tee</h3>
+                    <p class="product-price">R$ 129,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-category="camisas">
+                <img src="assets/shirt.png" alt="Camiseta Basic Grey" class="product-image" style="filter: grayscale(1);">
+                <div class="product-info">
+                    <span class="product-category">Camisetas</span>
+                    <h3 class="product-name">Basic Grey Edition</h3>
+                    <p class="product-price">R$ 99,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-category="camisas">
+                <img src="assets/shirt.png" alt="Camiseta Street Vision" class="product-image" style="filter: hue-rotate(180deg);">
+                <div class="product-info">
+                    <span class="product-category">Camisetas</span>
+                    <h3 class="product-name">Street Vision Tee</h3>
+                    <p class="product-price">R$ 149,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+        </section>
+
+        <!-- Seção de Calças (Acessada via link Conjuntos) -->
+        <div class="section-title" id="conjuntos-section">
+            <h2>Calças</h2>
+            <div class="underline"></div>
+        </div>
+
+        <section class="products-grid">
+            <article class="product-card" data-category="conjuntos">
+                <img src="assets/pants.png" alt="Conjunto Cargo Dark Grey" class="product-image">
+                <div class="product-info">
+                    <span class="product-category">Calças</span>
+                    <h3 class="product-name">Cargo Dark Grey</h3>
+                    <p class="product-price">R$ 249,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-category="conjuntos">
+                <img src="assets/pants.png" alt="Conjunto Slim Tech" class="product-image" style="filter: brightness(0.7);">
+                <div class="product-info">
+                    <span class="product-category">Calças</span>
+                    <h3 class="product-name">Slim Tech Grey</h3>
+                    <p class="product-price">R$ 199,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+
+            <article class="product-card" data-category="conjuntos">
+                <img src="assets/pants.png" alt="Jogger Orange Detail" class="product-image" style="filter: saturate(1.5);">
+                <div class="product-info">
+                    <span class="product-category">Calças</span>
+                    <h3 class="product-name">Jogger Orange Detail</h3>
+                    <p class="product-price">R$ 219,90</p>
+                    <button class="add-to-cart magnetic">Adicionar ao Carrinho</button>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo"><img src="assets/logo.png" alt="EliteWear Logo"></div>
+                <p style="margin-top: 1rem; color: var(--text-grey); font-size: 0.9rem;">Elevando o streetwear ao próximo nível com designs audaciosos e qualidade inigualável na EliteWear.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="novidades.html">Nova Coleção</a></li>
+                    <li><a href="#">Mais Vendidos</a></li>
+                    <li><a href="promocoes.html">Promoções</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Suporte</h3>
+                <ul>
+                    <li><a href="#">Envio e Entrega</a></li>
+                    <li><a href="#">Devoluções</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Social</h3>
+                <div class="nav-icons" style="margin-top: 1rem;">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 ELITEWEAR Streetwear - www.elitewear.com. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

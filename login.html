@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ELITEWEAR</title>
+    <meta name="description" content="Descubra uma nova forma de se vestir com estilo, conforto e autenticidade. Nossa coleção reúne camisetas, conjuntos, roupas e calçados cuidadosamente selecionados para oferecer qualidade, durabilidade e um visual moderno que acompanha as tendências atuais sem abrir mão da sua identidade.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(20, 20, 20, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #050505;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .login-bg-glow {
+            display: none; /* Removed to focus on the holographic background */
+        }
+
+        .login-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            z-index: 1;
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-header img {
+            width: 134px;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-header h2 {
+            font-size: 1.8rem;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(white, rgba(255,255,255,0.5));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-grey);
+            transition: 0.3s;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            left: auto !important;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--text-grey);
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-orange);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-white);
+            font-family: inherit;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--primary-orange);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-group input:focus + i {
+            color: var(--primary-orange);
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-grey);
+            cursor: pointer;
+        }
+
+        .forgot-pass {
+            color: var(--primary-orange);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .forgot-pass:hover {
+            filter: brightness(1.2);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-orange);
+            border: none;
+            border-radius: 10px;
+            color: var(--bg-black);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+        }
+
+        .social-login {
+            text-align: center;
+        }
+
+        .social-login p {
+            color: var(--text-grey);
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .social-login p::before,
+        .social-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: var(--glass-border);
+        }
+
+        .social-login p::before { left: 0; }
+        .social-login p::after { right: 0; }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-white);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-grey);
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            z-index: 2;
+        }
+
+        .back-home:hover {
+            color: var(--primary-orange);
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <div class="login-bg-glow"></div>
+    
+    <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        Voltar para a Loja
+    </a>
+
+    <div class="login-container">
+        <div class="login-header">
+            <img src="assets/logo.png" alt="EliteWear Logo">
+            <h2>Bem-vindo</h2>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="loginEmail" placeholder="E-mail" required>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="loginPass" placeholder="Senha" required>
+                <i class="fas fa-lock"></i>
+                <i class="fas fa-eye toggle-password" id="toggleLoginPass"></i>
+            </div>
+
+            <div class="login-options">
+                <label class="remember-me">
+                    <input type="checkbox"> Lembrar de mim
+                </label>
+                <a href="#" class="forgot-pass">Esqueceu a senha?</a>
+            </div>
+
+            <button type="submit" class="login-btn">Entrar</button>
+        </form>
+
+        <div class="social-login">
+            <p>Ou entre com</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-apple"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+
+        <div class="register-link">
+            Não tem uma conta? <a href="register.html">Cadastre-se</a>
+        </div>
+    </div>
+
+    <script>
+        // Custom Cursor System
+        const cursor = document.querySelector('.cursor');
+        const dot = document.querySelector('.cursor-dot');
+        let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            createTrail(mouseX, mouseY);
+        });
+
+        function animateCursor() {
+            posX += (mouseX - posX) * 0.15;
+            posY += (mouseY - posY) * 0.15;
+            cursor.style.left = posX + 'px';
+            cursor.style.top = posY + 'px';
+            dot.style.left = mouseX + 'px';
+            dot.style.top = mouseY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.classList.add('trail');
+            document.body.appendChild(trail);
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            setTimeout(() => trail.remove(), 400);
+        }
+
+        // Holographic Background
+        const canvas = document.getElementById('bg');
+        const ctx = canvas.getContext('2d');
+        let w, h, time = 0;
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            for (let y = 0; y < h; y += 20) {
+                ctx.beginPath();
+                for (let x = 0; x < w; x += 10) {
+                    let wave = Math.sin(x * 0.01 + time) * 20 + Math.cos(y * 0.02 + time) * 10;
+                    ctx.lineTo(x, y + wave);
+                }
+                ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+            time += 0.02;
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Magnetic effect for the back button
+        const backBtn = document.querySelector('.back-home');
+        backBtn.addEventListener('mousemove', (e) => {
+            const rect = backBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            backBtn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        backBtn.addEventListener('mouseleave', () => {
+            backBtn.style.transform = `translate(0px, 0px)`;
+        });
+
+        // Login Logic
+        const loginForm = document.getElementById('loginForm');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPass').value;
+
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            
+            // Find user
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                // Store current session
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                alert(`Bem-vindo de volta, ${user.name}!`);
+                window.location.href = 'index.html';
+            } else {
+                alert('E-mail ou senha incorretos!');
+            }
+        });
+
+        // Toggle Password Visibility
+        const toggleLoginPass = document.getElementById('toggleLoginPass');
+        const loginPass = document.getElementById('loginPass');
+
+        toggleLoginPass.addEventListener('click', () => {
+            const type = loginPass.getAttribute('type') === 'password' ? 'text' : 'password';
+            loginPass.setAttribute('type', type);
+            toggleLoginPass.classList.toggle('fa-eye');
+            toggleLoginPass.classList.toggle('fa-eye-slash');
+        });
+    </script>
+</body>
+</html>
