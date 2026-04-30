@@ -7,12 +7,6 @@
     <meta name="description" content="Descubra uma nova forma de se vestir com estilo, conforto e autenticidade. Nossa coleção reúne camisetas, conjuntos, roupas e calçados cuidadosamente selecionados para oferecer qualidade, durabilidade e um visual moderno que acompanha as tendências atuais sem abrir mão da sua identidade.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          emailjs.init("YOUR_PUBLIC_KEY"); // Substitua pela sua Public Key do EmailJS
-       })();
-    </script>
     <style>
         :root {
             --glass-bg: rgba(20, 20, 20, 0.8);
@@ -220,28 +214,6 @@
             <button type="submit" class="login-btn">Cadastrar</button>
         </form>
 
-        <div id="verifySection" style="display: none; animation: slideUp 0.5s ease-out;">
-            <div class="login-header" style="margin-bottom: 1.5rem;">
-                <div style="background: var(--primary-orange); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                    <i class="fas fa-check-circle" style="font-size: 1.8rem; color: var(--bg-black);"></i>
-                </div>
-                <h2 style="font-size: 1.3rem; line-height: 1.4; text-transform: none;">Bem-vindo à Elite-wear!<br><span style="color: var(--primary-orange); font-size: 1.1rem;">Sua confirmação foi realizada com sucesso.</span></h2>
-                <div style="color: var(--text-grey); font-size: 0.85rem; margin-top: 1rem; text-align: center; line-height: 1.5;">
-                    <p>Estamos extremamente felizes em ter você conosco. Seu e-mail foi verificado com sucesso e sua conta já está totalmente ativa em nossa plataforma. A partir deste momento, você passa a ter acesso completo às nossas coleções exclusivas, lançamentos antecipados e ofertas especiais pensadas para destacar o seu estilo.</p>
-                    <p style="margin-top: 10px;">Na Elite-wear, acreditamos que a moda vai além de vestir — ela é uma forma de expressão, identidade e atitude. Explore nosso catálogo, descubra peças cuidadosamente selecionadas e aproveite uma experiência de compra moderna, segura e inspiradora. Seja muito bem-vindo à nossa comunidade.</p>
-                </div>
-            </div>
-            <form id="verifyForm">
-                <p style="text-align: center; color: var(--text-white); margin-bottom: 10px; font-size: 0.9rem;">Insira o código de confirmação abaixo:</p>
-                <div class="input-group">
-                    <input type="text" id="verifyCode" placeholder="0000" maxlength="4" required style="text-align: center; letter-spacing: 15px; font-size: 1.8rem; padding: 15px; background: rgba(255,255,255,0.03); border: 1px dashed var(--primary-orange);">
-                </div>
-                <p id="timerText" style="text-align: center; font-size: 0.85rem; color: var(--primary-orange); margin-bottom: 1.5rem; font-weight: 600;">O código expira em: <span id="timer">02:00</span></p>
-                <button type="submit" class="login-btn">Ativar Conta</button>
-                <p style="text-align: center; font-size: 0.8rem; color: var(--text-grey); margin-top: 1rem;">Não recebeu o código? <a href="#" id="resendBtn" style="color: var(--primary-orange); pointer-events: none; opacity: 0.5;">Reenviar</a></p>
-            </form>
-        </div>
-
         <div class="register-link">
             Já tem uma conta? <a href="login">Entre agora</a>
         </div>
@@ -322,60 +294,6 @@
 
         // Registration Logic
         const registerForm = document.getElementById('registerForm');
-        const verifySection = document.getElementById('verifySection');
-        const verifyForm = document.getElementById('verifyForm');
-        const resendBtn = document.getElementById('resendBtn');
-        const timerSpan = document.getElementById('timer');
-        let tempUser = null;
-        let currentVerificationCode = "";
-        let countdownInterval = null;
-
-        function startTimer() {
-            let timeLeft = 120; // 2 minutes
-            resendBtn.style.pointerEvents = 'none';
-            resendBtn.style.opacity = '0.5';
-            
-            clearInterval(countdownInterval);
-            countdownInterval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerSpan.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    timerSpan.textContent = "Expirado";
-                    currentVerificationCode = "EXPIRED";
-                    resendBtn.style.pointerEvents = 'auto';
-                    resendBtn.style.opacity = '1';
-                }
-                timeLeft--;
-            }, 1000);
-        }
-
-        function generateAndSendCode(email, name) {
-            const randomNum = Math.floor(Math.random() * 9999) + 1;
-            currentVerificationCode = randomNum.toString().padStart(4, '0');
-            
-            // Aviso de envio em progresso (opcional, apenas visual)
-            console.log("Enviando e-mail...");
-
-            // Integração com EmailJS para enviar o e-mail real
-            const templateParams = {
-                to_name: name,
-                to_email: email,
-                verification_code: currentVerificationCode
-            };
-
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-                .then(function(response) {
-                    console.log('E-mail enviado com sucesso!', response.status, response.text);
-                }, function(error) {
-                    console.log('Falha ao enviar e-mail...', error);
-                    alert("Aviso: O envio de e-mail falhou pois as credenciais do EmailJS não estão configuradas. O código é: " + currentVerificationCode);
-                });
-
-            startTimer();
-        }
 
         registerForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -396,43 +314,12 @@
                 return;
             }
 
-            tempUser = { name, email, password, verified: false };
-            
-            generateAndSendCode(email, name);
-            
-            registerForm.style.display = 'none';
-            document.querySelector('.login-header').style.display = 'none';
-            document.querySelector('.register-link').style.display = 'none';
-            verifySection.style.display = 'block';
-        });
+            const newUser = { name, email, password, verified: true };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
 
-        resendBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (tempUser) {
-                generateAndSendCode(tempUser.email);
-            }
-        });
-
-        verifyForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const code = document.getElementById('verifyCode').value;
-
-            if (currentVerificationCode === "EXPIRED") {
-                alert('O código expirou! Clique em Reenviar.');
-                return;
-            }
-
-            if (code === currentVerificationCode) {
-                tempUser.verified = true;
-                const users = JSON.parse(localStorage.getItem('users') || '[]');
-                users.push(tempUser);
-                localStorage.setItem('users', JSON.stringify(users));
-
-                alert('E-mail verificado com sucesso! Sua conta está ativa.');
-                window.location.href = 'login';
-            } else {
-                alert('Código de verificação inválido!');
-            }
+            alert('Cadastro realizado com sucesso! Seja bem-vindo(a).');
+            window.location.href = 'login';
         });
 
         // Toggle Password Visibility
