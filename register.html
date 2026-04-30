@@ -217,14 +217,18 @@
         <div id="verifySection" style="display: none; animation: slideUp 0.5s ease-out;">
             <div class="login-header" style="margin-bottom: 1.5rem;">
                 <div style="background: var(--primary-orange); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
-                    <i class="fas fa-envelope-open-text" style="font-size: 1.5rem; color: var(--bg-black);"></i>
+                    <i class="fas fa-check-circle" style="font-size: 1.8rem; color: var(--bg-black);"></i>
                 </div>
-                <h2 style="font-size: 1.5rem;">Verificar E-mail</h2>
-                <p style="color: var(--text-grey); font-size: 0.85rem; margin-top: 1rem; text-align: center; line-height: 1.4;">Enviamos um código de 6 dígitos para o seu e-mail. Por favor, insira-o abaixo para ativar sua conta.</p>
+                <h2 style="font-size: 1.3rem; line-height: 1.4; text-transform: none;">Bem-vindo à Elite-wear!<br><span style="color: var(--primary-orange); font-size: 1.1rem;">Sua confirmação foi realizada com sucesso.</span></h2>
+                <div style="color: var(--text-grey); font-size: 0.85rem; margin-top: 1rem; text-align: center; line-height: 1.5;">
+                    <p>Estamos extremamente felizes em ter você conosco. Seu e-mail foi verificado com sucesso e sua conta já está totalmente ativa em nossa plataforma. A partir deste momento, você passa a ter acesso completo às nossas coleções exclusivas, lançamentos antecipados e ofertas especiais pensadas para destacar o seu estilo.</p>
+                    <p style="margin-top: 10px;">Na Elite-wear, acreditamos que a moda vai além de vestir — ela é uma forma de expressão, identidade e atitude. Explore nosso catálogo, descubra peças cuidadosamente selecionadas e aproveite uma experiência de compra moderna, segura e inspiradora. Seja muito bem-vindo à nossa comunidade.</p>
+                </div>
             </div>
             <form id="verifyForm">
+                <p style="text-align: center; color: var(--text-white); margin-bottom: 10px; font-size: 0.9rem;">Insira o código de confirmação abaixo:</p>
                 <div class="input-group">
-                    <input type="text" id="verifyCode" placeholder="000000" maxlength="6" required style="text-align: center; letter-spacing: 5px; font-size: 1.5rem; padding: 15px; background: rgba(255,255,255,0.03); border: 1px dashed var(--primary-orange);">
+                    <input type="text" id="verifyCode" placeholder="0000" maxlength="4" required style="text-align: center; letter-spacing: 15px; font-size: 1.8rem; padding: 15px; background: rgba(255,255,255,0.03); border: 1px dashed var(--primary-orange);">
                 </div>
                 <p id="timerText" style="text-align: center; font-size: 0.85rem; color: var(--primary-orange); margin-bottom: 1.5rem; font-weight: 600;">O código expira em: <span id="timer">02:00</span></p>
                 <button type="submit" class="login-btn">Ativar Conta</button>
@@ -343,8 +347,8 @@
         }
 
         function generateAndSendCode(email) {
-            const randomNum = Math.floor(Math.random() * (999999 - 20 + 1)) + 20;
-            currentVerificationCode = randomNum.toString().padStart(6, '0');
+            const randomNum = Math.floor(Math.random() * 9999) + 1;
+            currentVerificationCode = randomNum.toString().padStart(4, '0');
             alert(`[SIMULAÇÃO GMAIL]\n\nPara: ${email}\nAssunto: Confirmação de Conta - ELITEWEAR\n\nSeu código de ativação é: ${currentVerificationCode}`);
             startTimer();
         }
