@@ -7,6 +7,12 @@
     <meta name="description" content="Descubra uma nova forma de se vestir com estilo, conforto e autenticidade. Nossa coleção reúne camisetas, conjuntos, roupas e calçados cuidadosamente selecionados para oferecer qualidade, durabilidade e um visual moderno que acompanha as tendências atuais sem abrir mão da sua identidade.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("YOUR_PUBLIC_KEY"); // Substitua pela sua Public Key do EmailJS
+       })();
+    </script>
     <style>
         :root {
             --glass-bg: rgba(20, 20, 20, 0.8);
@@ -346,10 +352,28 @@
             }, 1000);
         }
 
-        function generateAndSendCode(email) {
+        function generateAndSendCode(email, name) {
             const randomNum = Math.floor(Math.random() * 9999) + 1;
             currentVerificationCode = randomNum.toString().padStart(4, '0');
-            alert(`[SIMULAÇÃO GMAIL]\n\nPara: ${email}\nAssunto: Confirmação de Conta - ELITEWEAR\n\nSeu código de ativação é: ${currentVerificationCode}`);
+            
+            // Aviso de envio em progresso (opcional, apenas visual)
+            console.log("Enviando e-mail...");
+
+            // Integração com EmailJS para enviar o e-mail real
+            const templateParams = {
+                to_name: name,
+                to_email: email,
+                verification_code: currentVerificationCode
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    console.log('E-mail enviado com sucesso!', response.status, response.text);
+                }, function(error) {
+                    console.log('Falha ao enviar e-mail...', error);
+                    alert("Aviso: O envio de e-mail falhou pois as credenciais do EmailJS não estão configuradas. O código é: " + currentVerificationCode);
+                });
+
             startTimer();
         }
 
@@ -374,7 +398,7 @@
 
             tempUser = { name, email, password, verified: false };
             
-            generateAndSendCode(email);
+            generateAndSendCode(email, name);
             
             registerForm.style.display = 'none';
             document.querySelector('.login-header').style.display = 'none';
