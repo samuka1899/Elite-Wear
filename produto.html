@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto | ELITEWEAR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <canvas id="bg"></canvas>
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    <nav>
+        <div class="logo"><a href="/"><img src="assets/logo.png" alt="EliteWear Logo" style="height: 48px;"></a></div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="categorias.html">Categorias</a></li>
+            <li><a href="novidades.html">Novidades</a></li>
+            <li><a href="promocoes.html">Promoções</a></li>
+            <li><a href="conjuntos.html">Conjuntos</a></li>
+        </ul>
+        <div class="nav-icons">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar peças...">
+                <i class="fas fa-search" id="searchToggle"></i>
+            </div>
+            <a href="register.html" class="register-mobile-link">Cadastre-se</a>
+            <a href="login.html" class="nav-icon-link"><i class="fas fa-user"></i></a>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
+    </nav>
+
+    <main class="product-page-container">
+        <div class="product-details-wrapper">
+            <div class="product-image-container">
+                <img src="" id="prodImage" alt="Produto" class="product-large-image">
+            </div>
+            <div class="product-info-container">
+                <span class="product-category" id="prodCategory">Categoria</span>
+                <h1 class="product-title" id="prodName">Carregando...</h1>
+                
+                <!-- Estrelas de avaliação -->
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <span class="rating-count">(102 avaliações)</span>
+                </div>
+
+                <p class="product-price-large" id="prodPrice">R$ 0,00</p>
+                <p class="product-description">Desenvolvida com materiais de alta qualidade para garantir o máximo de conforto e durabilidade sem perder a essência do streetwear urbano.</p>
+                
+                <button class="add-to-cart magnetic" id="prodAddToCart" style="padding: 1rem; font-size: 1.1rem; margin-top: 2rem;">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+
+        <div class="comments-section">
+            <div class="section-title" style="margin: 3rem 0 2rem; text-align: left;">
+                <h2 style="font-size: 1.8rem; text-transform: none;">Avaliações (102)</h2>
+                <div class="underline" style="margin: 0; width: 40px;"></div>
+            </div>
+
+            <form id="commentForm" class="comment-form">
+                <input type="text" id="commentName" placeholder="Seu Nome" required>
+                <textarea id="commentText" placeholder="Deixe sua avaliação sobre o produto..." rows="3" required></textarea>
+                <button type="submit" class="btn-primary magnetic" style="padding: 0.8rem 1.5rem;">Enviar Avaliação</button>
+            </form>
+
+            <div class="comments-list" id="commentsList">
+                <!-- Mock comments -->
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <strong>Rafael C.</strong>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                    <p>Qualidade absurda! O caimento é perfeito e o material é muito bom. Recomendo demais.</p>
+                    <span class="comment-date">Há 2 dias</span>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <strong>Thiago S.</strong>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    </div>
+                    <p>Entrega super rápida e o produto superou minhas expectativas. A EliteWear nunca decepciona.</p>
+                    <span class="comment-date">Há 1 semana</span>
+                </div>
+            </div>
+            
+            <button class="load-more-btn">Ver todos os 102 comentários</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo"><img src="assets/logo.png" alt="EliteWear Logo" style="height: 48px;"></div>
+                <p style="margin-top: 1rem; color: var(--text-grey); font-size: 0.9rem;">Elevando o streetwear ao próximo nível com designs audaciosos e qualidade inigualável na EliteWear.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="novidades.html">Nova Coleção</a></li>
+                    <li><a href="categorias.html">Categorias</a></li>
+                    <li><a href="promocoes.html">Promoções</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Suporte</h3>
+                <ul>
+                    <li><a href="#">Envio e Entrega</a></li>
+                    <li><a href="#">Devoluções</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Social</h3>
+                <div class="nav-icons" style="margin-top: 1rem;">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 ELITEWEAR Streetwear - www.elitewear.com. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productData = JSON.parse(localStorage.getItem('selectedProduct'));
+            if(productData) {
+                document.getElementById('prodName').innerText = productData.name;
+                
+                // Tratar caso tenha preço antigo (Sale)
+                if(productData.price.includes('<span')) {
+                    document.getElementById('prodPrice').innerHTML = productData.price;
+                } else {
+                    document.getElementById('prodPrice').innerText = productData.price;
+                }
+                
+                document.getElementById('prodCategory').innerText = productData.category;
+                const imgEl = document.getElementById('prodImage');
+                imgEl.src = productData.image;
+                
+                if(productData.filter) {
+                    imgEl.style.filter = productData.filter;
+                }
+            } else {
+                document.getElementById('prodName').innerText = "Produto não encontrado";
+            }
+        });
+
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('commentName').value;
+            const text = document.getElementById('commentText').value;
+
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-item';
+            newComment.innerHTML = `
+                <div class="comment-header">
+                    <strong>${name}</strong>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <p>${text}</p>
+                <span class="comment-date">Agora mesmo</span>
+            `;
+
+            commentsList.insertBefore(newComment, commentsList.firstChild);
+            commentForm.reset();
+            newComment.style.animation = 'fadeIn 0.5s ease';
+        });
+    </script>
+</body>
+</html>

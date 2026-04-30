@@ -225,3 +225,34 @@ if (searchToggle && searchInput) {
         }
     });
 }
+
+// Product Card Click to Details Page
+document.querySelectorAll('.product-card').forEach(card => {
+    // Add pointer cursor to indicate it's clickable
+    card.style.cursor = 'pointer';
+    
+    card.addEventListener('click', (e) => {
+        // Prevent redirect if clicking the "Add to Cart" button
+        if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+            return;
+        }
+
+        const name = card.querySelector('.product-name').innerText;
+        const category = card.querySelector('.product-category').innerText;
+        const price = card.querySelector('.product-price').innerHTML; // innerHTML to get the old price if sale
+        const imgEl = card.querySelector('.product-image');
+        const image = imgEl.src;
+        const filter = imgEl.style.filter;
+
+        const productData = {
+            name,
+            category,
+            price,
+            image,
+            filter
+        };
+
+        localStorage.setItem('selectedProduct', JSON.stringify(productData));
+        window.location.href = 'produto.html';
+    });
+});
