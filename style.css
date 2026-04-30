@@ -696,3 +696,10 @@ footer {
         padding-top: 8rem;
     }
 }
+
+/* Hide Custom Cursor on Touch Devices */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    .cursor, .cursor-dot, .trail {
+        display: none !important;
+    }
+}
