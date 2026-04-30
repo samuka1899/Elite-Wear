@@ -173,3 +173,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Search Functionality
+const searchToggle = document.getElementById('searchToggle');
+const searchInput = document.getElementById('searchInput');
+
+if (searchToggle && searchInput) {
+    // Toggle search bar
+    searchToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchInput.classList.toggle('active');
+        if (searchInput.classList.contains('active')) {
+            searchInput.focus();
+        }
+    });
+
+    // Real-time filtering
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const productCards = document.querySelectorAll('.product-card');
+        const sections = document.querySelectorAll('.section-title');
+
+        let hasResults = false;
+
+        productCards.forEach(card => {
+            const productName = card.querySelector('.product-name').innerText.toLowerCase();
+            const productCategory = card.querySelector('.product-category').innerText.toLowerCase();
+            
+            if (productName.includes(searchTerm) || productCategory.includes(searchTerm)) {
+                card.style.display = 'block';
+                hasResults = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Optional: Hide section titles if filtering
+        sections.forEach(section => {
+            if (searchTerm.length > 0) {
+                section.style.display = 'none';
+            } else {
+                section.style.display = 'block';
+            }
+        });
+    });
+
+    // Close search when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchInput.contains(e.target) && e.target !== searchToggle) {
+            searchInput.classList.remove('active');
+        }
+    });
+}
